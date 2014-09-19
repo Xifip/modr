@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  spin_id: 
+  name: MyString
+  user_id: 
+
+two:
+  spin_id: 
+  name: MyString
+  user_id: 
