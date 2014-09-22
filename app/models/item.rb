@@ -6,7 +6,8 @@ class Item < ActiveRecord::Base
   after_create :item_name
   
   def get_mod_name
-    mod_name = "mod1"
+    mod_count = self.mods.count
+    mod_name = "mod" + mod_count.to_s
   end
 
 

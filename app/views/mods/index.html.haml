@@ -1,0 +1,12 @@
+%h1= @product.name + " " + @spin.name + " " + @item.name 
+= link_to 'New mod', new_product_spin_item_mod_path
+%table.table
+  %tr
+    %th Name
+    %th Description
+    %th{:colspan => "2"}
+  - @mods.each do |mod|
+    %tr
+      %td= link_to mod.name,  product_spin_item_mod_path(@product, @spin, @item, mod)
+      %td= mod.description
+      %td= link_to 'Edit', edit_product_spin_item_mod_path(@product, @spin, @item, mod)

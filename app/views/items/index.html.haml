@@ -1,0 +1,12 @@
+%h1= @product.name + " " + @spin.name
+= link_to 'New item', new_product_spin_item_path
+%table.table
+  %tr
+    %th Name
+    %th{:colspan => "2"}
+  - @items.each do |item|
+    %tr
+      %td= link_to item.name,  product_spin_item_mods_path(@product, @spin, item)
+      %td= link_to 'Edit', edit_product_spin_item_path(@product, @spin, item)
+      %td= link_to 'Destroy', product_spin_item_path(@product, @spin, item),             |
+          method: :delete, data: { confirm: 'Are you sure?' } |

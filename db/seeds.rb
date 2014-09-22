@@ -35,7 +35,7 @@ end
 Item.all.each do |item|
   mod_qty = rand(10)
   mod_qty.times do |i|
-    mod_name = item.get_mod_name
+    mod_name = item.spin.product.name + "_" + item.spin.name + "_" + item.name + "_" + item.get_mod_name
     item.mods.create(name: mod_name)
   end
 end

@@ -2,10 +2,14 @@ Modr::Application.routes.draw do
 
 	root 'products#index'
 
-	resources :products, :only => [:new, :create, :index, :show, :edit, :destroy]
-	resources :spins, :only => [:new, :create, :index, :show, :edit, :destroy]
-	resources :items, :only => [:new, :create, :index, :show, :edit, :destroy]
-	resources :mods, :only => [:new, :create, :index, :show]
+	resources :products, :only => [:new, :create, :index, :show, :edit, :destroy] do
+	  resources :spins, :only => [:new, :create, :index, :show, :edit, :destroy] do 
+      resources :items, :only => [:new, :create, :index, :show, :edit, :destroy] do
+        resources :mods, :only => [:new, :create, :index, :show, :edit]
+      end
+    end
+  end
+	
   resources :tests, :only => [:new, :create, :index, :show, :edit, :destroy]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
