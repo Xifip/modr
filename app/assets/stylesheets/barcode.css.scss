@@ -1,0 +1,38 @@
+// Place all the styles related to the barcode controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+table.barby-barcode { border-spacing: 0; }
+tr.barby-row {}
+td.barby-cell { width: 1px; height: 30px; }
+td.barby-cell.on { background: #000; }
+.code{
+  font-size: 40px;
+   font-weight: bold; }
+
+.label_stuff{
+  border-style: dashed;
+   border-width: 2px;
+  width: 40mm;
+  .left_stuff{
+    width: 25mm;
+    float: left;
+    .imgholder{height: 15px;}
+    .label_barcode{
+      width: 25mm; 
+      height: 4mm;
+      } 
+    .label_text{
+      padding-left: 2px;
+      margin-bottom: 1px;
+      font-size:10px;
+      }
+      div{margin-bottom: 0px; padding-bottom: 0px;}
+    }
+  .right_stuff{
+    width: 15mm;
+    float: left;
+    .label_info{font-size:10px;}
+    }
+  }
+    

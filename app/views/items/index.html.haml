@@ -3,10 +3,17 @@
 %table.table
   %tr
     %th Name
+    %th label
     %th{:colspan => "2"}
-  - @items.each do |item|
+  - @items.each_with_index do |item, i|
     %tr
-      %td= link_to item.name,  product_spin_item_mods_path(@product, @spin, item)
-      %td= link_to 'Edit', edit_product_spin_item_path(@product, @spin, item)
-      %td= link_to 'Destroy', product_spin_item_path(@product, @spin, item),             |
-          method: :delete, data: { confirm: 'Are you sure?' } |
+      %td= link_to item.name,  product_spin_item_mods_path(@product, @spin, item)    
+      %td
+        %div.label_stuff
+          %div.left_stuff
+            %div.imgholder= image_tag(item.image_url, :class => "label_barcode")
+            %div.label_text= item.name         
+          %div.right_stuff
+            %div.label_info= @product.name
+            %div.label_info= @spin.name          
+          %br{:style => "clear: left;"}/

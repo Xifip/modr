@@ -28,7 +28,9 @@ ActiveRecord::Schema.define(version: 20140916165817) do
   create_table "items", force: true do |t|
     t.integer  "spin_id"
     t.string   "name"
+    t.string   "image_url"
     t.integer  "user_id"
+    t.string   "barcodeimage"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

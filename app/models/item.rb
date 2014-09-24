@@ -1,10 +1,20 @@
+require 'barby'
+require 'barby/barcode/code_128'
+#require 'barby/outputter/ascii_outputter'
+#require 'barby/outputter/html_outputter'
+require 'chunky_png'
+require 'barby/outputter/png_outputter'
+#require 'rmagick'
+#require 'barby/outputter/rmagick_outputter'
+
 class Item < ActiveRecord::Base
 
   belongs_to :spin
   has_many :mods, dependent: :destroy
 
   after_create :item_name
-  
+  mount_uploader :barcodeimage, BarcodeimageUploader
+
   def get_mod_name
     mod_count = self.mods.count
     mod_name = "mod" + mod_count.to_s
@@ -27,7 +37,25 @@ class Item < ActiveRecord::Base
     productnumber = self.spin.product.product_number
     serial_num = self.get_next_serial_num
     item_name = current_year.to_s + week_of_year.to_s + productnumber.to_s + serial_num.to_s
-    self.update_attributes(name: item_name)
+    #self.update_attributes(name: item_name)
+
+  #end
+
+  #def gen_barcode
+
+    s3 = AWS::S3.new    
+    
+    path =  'uploads/' + item_name + '/' + item_name + '.png'
+
+
+    @code = item_name.to_s
+    @barcode = Barby::Code128B.new(@code)    
+    blob = Barby::PngOutputter.new(@barcode).to_png #Raw PNG data
+    
+    s3.buckets['modr'].objects[path].write(blob, :acl => :public_read)   
+    objUri = s3.buckets['modr'].objects[path].public_url.to_s
+    self.update_attributes(name: item_name, image_url: objUri)
+
   end
 
 end
