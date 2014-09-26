@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20140916165817) do
 
   create_table "spins", force: true do |t|
     t.integer  "product_id"
+    t.integer  "item_count"
     t.text     "description"
     t.string   "name"
     t.datetime "created_at"

@@ -1,4 +1,12 @@
-%h1= @product.name + " " + @spin.name + " " + @item.name 
+%ul.breadcrumb
+  %li
+    %a{:href => products_path} Products
+  %li
+    %a{:href => product_spins_path(@product)}= @product.name
+  %li
+    %a{:href => product_spin_items_path(@product, @spin)}= @product.name + "_" + @spin.name
+  %li.active= @product.name + "_" + @spin.name + "_" + @item.name 
+%h1= @product.name + "_" + @spin.name + "_" + @item.name 
 = link_to 'New mod', new_product_spin_item_mod_path
 %table.table
   %tr
@@ -7,6 +15,6 @@
     %th{:colspan => "2"}
   - @mods.each do |mod|
     %tr
-      %td= link_to mod.name,  product_spin_item_mod_path(@product, @spin, @item, mod)
+      %td= mod.name
       %td= mod.description
       %td= link_to 'Edit', edit_product_spin_item_mod_path(@product, @spin, @item, mod)

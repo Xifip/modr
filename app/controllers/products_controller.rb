@@ -4,24 +4,20 @@ class ProductsController < ApplicationController
 		@products = Product.all
 	end
 
-  def show
-    @current_product = Product.find(params[:id])
-    @spins = @current_product.spins
-  end
-
   def edit
     @product = Product.find(params[:id])
   end
 
-  def update
-    logger.info("session info")
+  def update   
     @product = Product.find(params[:id])
     @product.update_attributes(product_params)
     redirect_to(products_path, :notice => 'Product was successfully updated.')
-  
   end
 
   def destroy
+    @product = Product.find(params[:id])
+    @product.destroy
+    redirect_to products_path, notice: "Product was successfully destroyed."
   end
 
   def new

@@ -1,0 +1,13 @@
+checking for Ruby version >= 1.8.5... -------------------- yes
+
+--------------------
+
+find_executable: checking for gcc... -------------------- yes
+
+--------------------
+
+find_executable: checking for Magick-config... -------------------- no
+
+--------------------
+
+Can't install RMagick 2.13.2. Can't find Magick-config in /home/john/.rbenv/versions/2.0.0-p481/bin:/home/john/.rbenv/libexec:/home/john/.rbenv/plugins/ruby-build/bin:/home/john/.rbenv/shims:/home/john/.rbenv/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games

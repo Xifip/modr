@@ -4,11 +4,13 @@
   %tr
     %th Name
     %th Description
+    %th Number of Spins
     %th{:colspan => "2"}
   - @products.each do |product|
     %tr
       %td= link_to product.name, product_spins_path(product)
       %td= product.description
+      %td= product.spins.count
       %td= link_to 'Edit', edit_product_path(product)
       %td= link_to 'Destroy', product_path(product),             |
           method: :delete, data: { confirm: 'Are you sure?' } |

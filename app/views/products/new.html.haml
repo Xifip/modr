@@ -1,2 +1,25 @@
-= render 'form'
+%ul.breadcrumb
+  %li
+    %a{:href => products_path(@products)} Products
+  %li.active new product
+= form_for @product, :html => {:multipart => true} do |f| 
+  - if @product.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@product.errors.count, "error")
+        prohibited
+        this device from being saved:
+      %ul
+        - @product.errors.full_messages.each do |msg|
+          %li= msg
+  %p
+    = f.label :name, "name"
+    = f.text_field :name
+  %p 
+    = f.label :description, "description"
+    = f.text_field :description
+  %p  
+    = f.label :product_number, "product number"
+    = f.text_field :product_number    
+  %p= f.submit
 %p= link_to "Back to Products", products_path(@products)

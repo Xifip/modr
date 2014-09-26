@@ -9,7 +9,7 @@ gem 'pg'
 gem 'haml'
 gem 'barby'
 gem 'chunky_png'
-gem 'rmagick', '2.13.2'
+#gem 'rmagick', '2.13.2'
 gem 'carrierwave'
 gem 'fog'
 gem 'aws-sdk', '~> 1.0'
@@ -34,6 +34,9 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.2'
 
+gem 'bootstrap-sass', '~> 3.2.0'
+gem 'autoprefixer-rails'
+gem 'byebug'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

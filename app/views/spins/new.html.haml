@@ -1,0 +1,27 @@
+%ul.breadcrumb
+  %li
+    %a{:href => products_path} Products
+  %li
+    %a{:href => product_spins_path(@product)}= @product.name
+  %li.active new spin
+= form_for [@product, @spin], :html => {:multipart => true} do |f| 
+  - if @spin.errors.any?
+    #error_explanation
+      %h2
+        = pluralize(@spin.errors.count, "error")
+        prohibited
+        this device from being saved:
+      %ul
+        - @spin.errors.full_messages.each do |msg|
+          %li= msg
+  %p
+    = f.label :name, "name"
+    = f.text_field :name
+  %p 
+    = f.label :description, "description"
+    = f.text_field :description   
+  %p 
+    = f.label :item_count, "number of built units"
+    = f.text_field :item_count 
+  %p= f.submit
+%p= link_to "Back to " + @product.name + " spins", product_spins_path(@product)

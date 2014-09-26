@@ -1,0 +1,16 @@
+%ul.breadcrumb
+  %li
+    %a{:href => products_path} Products
+  %li
+    %a{:href => product_spins_path(@product)}= @product.name
+  %li
+    %a{:href => product_spin_items_path(@product, @spin)}= @product.name + "_" + @spin.name
+  %li
+    %a{:href => product_spin_item_mods_path(@product, @spin, @item)}= @product.name + "_" + @spin.name + "_" + @item.name
+  %li.active edit mod
+= form_for [@product, @spin, @item, @mod], :html => {:multipart => true} do |f| 
+  %p 
+    = f.label :description, "description"
+    = f.text_field :description  
+  %p= f.submit
+%p= link_to "Back to " + @item.name + " mods", product_spin_item_mods_path(@product, @spin, @item)
