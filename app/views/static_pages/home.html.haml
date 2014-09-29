@@ -1,0 +1,16 @@
+- if user_signed_in?
+  .row
+    %h3.well.well-small 
+      =link_to 'View products', products_path    
+    .spacer200      
+- else
+  .row.center.hero-unit
+    .row
+      %h1 Modr - track your development modifications
+      %h2.col-md-2.col-md-offset-5
+        \#{link_to "Login",  new_user_session_path, class: "btn btn-primary btn-lg btn-block"}
+      .spacer50
+    .row  
+      %Span
+        no account?  
+      \#{link_to "Sign up here", new_user_registration_path}                
