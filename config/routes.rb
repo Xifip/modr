@@ -1,5 +1,6 @@
 Modr::Application.routes.draw do
 
+  devise_for :users
 	root 'products#index'
 
 	resources :products, :only => [:new, :create, :index, :edit, :update, :destroy] do

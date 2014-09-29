@@ -18,7 +18,7 @@ $bodyColour: #f8f5ee;
 header.navbar.navbar-inverse.navbar-fixed-top.game div.navbar-inner{
   min-height: 0px;
 }
-body, header.navbar.navbar-inverse.navbar-fixed-top {
+body {
   background-color: $bodyColour;
 }
 
@@ -120,12 +120,11 @@ p {
 }
 /* header */
 header {height:86px}
+/* header */
+#branding, #loginmenu, #logo {height:70px}
+
 #branding a{
-  font-size: 1.7em;
-  color: blue;
-  text-transform: uppercase;
-  letter-spacing: -1px;
-  font-weight: bold;
+  color: white;
 }
 #logo {
   float: left;

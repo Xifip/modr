@@ -6,8 +6,6 @@ class Spin < ActiveRecord::Base
 
   accepts_nested_attributes_for :buildstandards
 
-  validates_uniqueness_of :name
-
   after_create :create_items
 
   def create_items
