@@ -43,7 +43,7 @@ Modr::Application.configure do
     password: ENV['email_pw']
   }
 
-  config.action_mailer.default_url_options = {host: "fathomless-garden-9133.herokuapp.com"}  
+  config.action_mailer.default_url_options = {host: "modr.herokuapp.com"}  
   # Version of your assets, change this if you want to expire all your assets.
   config.assets.version = '1.0'
 
