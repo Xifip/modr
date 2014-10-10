@@ -15,6 +15,9 @@ class Item < ActiveRecord::Base
   after_create :item_name
   mount_uploader :barcodeimage, BarcodeimageUploader
 
+  validates_uniqueness_of :name
+  validates_length_of :name, :is => 10, :allow_blank => true
+
   def get_mod_name
     mod_count = self.mods.count
     mod_num = "mod" + mod_count.to_s
@@ -39,12 +42,15 @@ class Item < ActiveRecord::Base
 
   def item_name
     # add barcode to s3
-    week_of_year = Time.now.strftime("%U")    
-    current_year = Time.now.strftime("%y")
-    productnumber = self.spin.product.product_number
-    serial_num = self.get_next_serial_num
-    item_name = current_year.to_s + week_of_year.to_s + productnumber.to_s + serial_num.to_s
-
+    if self.name.blank?
+      week_of_year = Time.now.strftime("%U")    
+      current_year = Time.now.strftime("%y")
+      productnumber = self.spin.product.product_number
+      serial_num = self.get_next_serial_num
+      item_name = current_year.to_s + week_of_year.to_s + productnumber.to_s + serial_num.to_s
+    else
+      item_name = self.name
+    end
     s3 = AWS::S3.new    
     
     path =  'uploads/' + item_name + '/' + item_name + '.png'
