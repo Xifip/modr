@@ -1,2 +1,14 @@
-= render 'form'
-%p= link_to "Back to Spin", @item.spin
+%ul.breadcrumb
+  %li
+    %a{:href => products_path} Products
+  %li
+    %a{:href => product_spins_path(@product)}= @product.name
+  %li
+    %a{:href => product_spin_items_path(@product, @spin)}= @product.name + "_" + @spin.name
+  %li.active new item
+= form_for [@product, @spin, @item], :html => {:multipart => true} do |f| 
+  %p 
+    = f.label :name, "serial number"
+    = f.text_field :name  
+  %p= f.submit
+%p= link_to "Back to " + @spin.name + " items", product_spin_items_path(@product, @spin)

@@ -5,7 +5,11 @@
     %a{:href => product_spins_path(@product)}= @product.name
   %li.active= @product.name + "_" + @spin.name
 %h1= @product.name + "_" + @spin.name
-= link_to 'New item', new_product_spin_item_path
+.row
+  .pull-left
+    = link_to 'New item', new_product_spin_item_path(has_label: false)
+  .pull-right
+    = link_to 'Add item with a label', new_product_spin_item_path(has_label: true)
 %table.table
   %tr
     %th Name
