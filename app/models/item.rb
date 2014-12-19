@@ -45,9 +45,13 @@ class Item < ActiveRecord::Base
     if self.name.blank?
       week_of_year = Time.now.strftime("%U")    
       current_year = Time.now.strftime("%y")
-      productnumber = self.spin.product.product_number
+      if self.spin.product.product_number < 10
+        productnumber = "0" + self.spin.product.product_number.to_s 
+      else
+        productnumber = self.spin.product.product_number.to_s 
+      end
       serial_num = self.get_next_serial_num
-      item_name = current_year.to_s + week_of_year.to_s + productnumber.to_s + serial_num.to_s
+      item_name = current_year.to_s + week_of_year.to_s + productnumber + serial_num.to_s
     else
       item_name = self.name
     end

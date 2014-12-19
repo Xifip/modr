@@ -1,6 +1,7 @@
 Modr::Application.routes.draw do
 
-	root 'products#index'
+  devise_for :users
+	root :to => 'static_pages#home'
 
 	resources :products, :only => [:new, :create, :index, :edit, :update, :destroy] do
 	  resources :spins, :only => [:new, :create, :index, :edit, :update, :destroy] do 
