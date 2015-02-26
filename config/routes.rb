@@ -1,7 +1,7 @@
 Modr::Application.routes.draw do
 
   devise_for :users
-	root :to => 'static_pages#home'
+	root :to => "products#index"
 
 	resources :products, :only => [:new, :create, :index, :edit, :update, :destroy] do
 	  resources :spins, :only => [:new, :create, :index, :edit, :update, :destroy] do 
@@ -11,6 +11,11 @@ Modr::Application.routes.draw do
     end
   end
 	
+  resources :components do
+    collection { post :import }
+  end
+  resources :components, :only => [:new, :create, :index, :edit, :update, :destroy]
+
   #resources :items
   #resources :spins
   resources :tests, :only => [:new, :create, :index, :show, :edit, :destroy]

@@ -37,6 +37,7 @@ gem 'jbuilder', '~> 1.2'
 gem 'bootstrap-sass', '~> 3.2.0'
 gem 'autoprefixer-rails'
 #gem 'byebug'
+#gem 'pry-byebug'
 
 gem 'rails_12factor', group: :production
 gem "letter_opener", group: :development
@@ -45,6 +46,15 @@ gem 'devise'
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
+end
+
+group :development do
+  gem "better_errors"
+  gem "binding_of_caller"
+end
+
+group :development, :test do
+    gem 'railroady'
 end
 
 # Use ActiveModel has_secure_password

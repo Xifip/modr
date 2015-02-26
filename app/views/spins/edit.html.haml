@@ -5,8 +5,8 @@
     %a{:href => product_spins_path(@product)}= @product.name
   %li.active edit spin
 = form_for [@product, @spin], :html => {:multipart => true} do |f| 
-  %p 
+  %div.form-group 
     = f.label :description, "description"
-    = f.text_field :description   
+    = f.text_area :description, :class => "form-control"  
   %p= f.submit
 %p= link_to "Back to " + @product.name + " spins", product_spins_path(@product)

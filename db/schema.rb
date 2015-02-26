@@ -11,16 +11,44 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140929074658) do
+ActiveRecord::Schema.define(version: 20150206173743) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "bomcomponents", force: true do |t|
+    t.string   "ref"
+    t.string   "bom_id"
+    t.string   "component_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "boms", force: true do |t|
+    t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "buildstandards", force: true do |t|
     t.text     "description"
     t.integer  "spin_id"
     t.string   "bom"
     t.string   "schematic"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "bom_id"
+  end
+
+  create_table "components", force: true do |t|
+    t.string   "value"
+    t.string   "package"
+    t.string   "manufacturer"
+    t.string   "manufacturer_part"
+    t.string   "manufacturer_part_alt"
+    t.string   "resmed_part"
+    t.text     "description"
+    t.string   "part_data"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

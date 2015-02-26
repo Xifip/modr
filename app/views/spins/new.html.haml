@@ -14,14 +14,14 @@
       %ul
         - @spin.errors.full_messages.each do |msg|
           %li= msg
-  %p
+  %div.form-group 
     = f.label :name, "name"
-    = f.text_field :name
-  %p 
+    = f.text_field :name, :class => "form-control"
+  %div.form-group  
     = f.label :description, "description"
-    = f.text_field :description   
-  %p 
+    = f.text_area :description, :class => "form-control"   
+  %div.form-group  
     = f.label :item_count, "number of built units"
-    = f.text_field :item_count 
+    = f.text_field :item_count, :class => "form-control" 
   %p= f.submit
 %p= link_to "Back to " + @product.name + " spins", product_spins_path(@product)

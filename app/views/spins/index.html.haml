@@ -9,12 +9,14 @@
     %th Name
     %th Description
     %th Number of Boards
+    %th Input Build standard
     %th{:colspan => "2"}
   - @spins.each do |spin|
     %tr
       %td= link_to spin.name, product_spin_items_path(@product, spin)
       %td= spin.description
       %td= spin.items.count
+      %td= spin.input_buildstandard
       %td= link_to 'Edit', edit_product_spin_path(@product, spin)
       %td= link_to 'Destroy', product_spin_path(@product, spin),             |
           method: :delete, data: { confirm: 'Are you sure?' } |
