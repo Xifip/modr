@@ -1,6 +1,6 @@
 class Bom < ActiveRecord::Base
 
-  has_many :buildstandard
-  has_many :bomcomponents
+  has_many :buildstandards
+  has_many :bomitems
   
 end

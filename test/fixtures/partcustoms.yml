@@ -1,0 +1,29 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  type: 
+  package: MyString
+  value: MyString
+  manufacturer_id: 1
+  manfacturer_no: MyString
+  manufacturer_url: MyString
+  partdata: MyText
+  distributor_id: 1
+  distributor_no: MyString
+  distributor_url: MyString
+  comment: MyText
+  tenant_no: MyString
+
+two:
+  type: 
+  package: MyString
+  value: MyString
+  manufacturer_id: 1
+  manfacturer_no: MyString
+  manufacturer_url: MyString
+  partdata: MyText
+  distributor_id: 1
+  distributor_no: MyString
+  distributor_url: MyString
+  comment: MyText
+  tenant_no: MyString

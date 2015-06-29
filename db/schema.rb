@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150206173743) do
+ActiveRecord::Schema.define(version: 20150421150654) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,17 @@ ActiveRecord::Schema.define(version: 20150206173743) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "bomitems", force: true do |t|
+    t.string   "ref"
+    t.integer  "bom_id"
+    t.integer  "part_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "bomitems", ["bom_id"], name: "index_bomitems_on_bom_id", using: :btree
+  add_index "bomitems", ["part_id"], name: "index_bomitems_on_part_id", using: :btree
 
   create_table "boms", force: true do |t|
     t.text     "description"
@@ -53,12 +64,26 @@ ActiveRecord::Schema.define(version: 20150206173743) do
     t.datetime "updated_at"
   end
 
+  create_table "distributors", force: true do |t|
+    t.string   "name"
+    t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "items", force: true do |t|
     t.integer  "spin_id"
     t.string   "name"
     t.string   "image_url"
     t.integer  "user_id"
     t.string   "barcodeimage"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "manufacturers", force: true do |t|
+    t.string   "name"
+    t.string   "url"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -72,6 +97,55 @@ ActiveRecord::Schema.define(version: 20150206173743) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "partcustoms", force: true do |t|
+    t.string   "type"
+    t.string   "package"
+    t.string   "value"
+    t.text     "partdata"
+    t.text     "comment"
+    t.string   "tenant_no"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "partdistibutorrelationships", force: true do |t|
+    t.integer  "part_id"
+    t.integer  "distributor_id"
+    t.string   "distributor_part_no"
+    t.string   "distributor_part_url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "partdistibutorrelationships", ["distributor_id"], name: "index_partdistibutorrelationships_on_distributor_id", using: :btree
+  add_index "partdistibutorrelationships", ["part_id"], name: "index_partdistibutorrelationships_on_part_id", using: :btree
+
+  create_table "partelecs", force: true do |t|
+    t.string   "type"
+    t.string   "package"
+    t.string   "value"
+    t.text     "partdata"
+    t.text     "comment"
+    t.string   "tenant_no"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "parts", force: true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.integer  "partable_id"
+    t.string   "partable_type"
+    t.integer  "manufacturer_id"
+    t.string   "manfacturer_part_no"
+    t.string   "manufacturer_part_url"
+    t.integer  "distributor_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "parts", ["partable_id", "partable_type"], name: "index_parts_on_partable_id_and_partable_type", using: :btree
 
   create_table "products", force: true do |t|
     t.string   "name"
