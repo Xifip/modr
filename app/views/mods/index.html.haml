@@ -8,13 +8,18 @@
   %li.active= @product.name + "_" + @spin.name + "_" + @item.name 
 %h1= @product.name + "_" + @spin.name + "_" + @item.name 
 = link_to 'New mod', new_product_spin_item_mod_path
-%table.table
-  %tr
-    %th Name
-    %th Description
-    %th{:colspan => "2"}
-  - @mods.each do |mod|
+.row
+  %table.table
     %tr
-      %td= mod.name
-      %td= mod.description
-      %td= link_to 'Edit', edit_product_spin_item_mod_path(@product, @spin, @item, mod)
+      %th.col-md-2 Name
+      %th.col-md-6 Description
+      %th.col-md-2 Created
+      %th.col-md-2 Last updated
+      %th{:colspan => "2"}
+    - @mods.each do |mod|
+      %tr
+        %td= mod.name
+        %td= mod.description
+        %td= mod.created_at.try(:to_date)
+        %td= mod.updated_at.try(:to_date)
+        %td= link_to 'Edit', edit_product_spin_item_mod_path(@product, @spin, @item, mod)

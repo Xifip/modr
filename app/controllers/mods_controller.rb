@@ -5,7 +5,7 @@ class ModsController < ApplicationController
     @product = Product.find(params[:product_id])	
     @spin = Spin.find(params[:spin_id])		
     @item = Item.find(params[:item_id])	
-    @mods = @item.mods
+    @mods = @item.mods.order(:created_at)
 	end
 
   def new
