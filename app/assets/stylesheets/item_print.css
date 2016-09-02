@@ -1,0 +1,15 @@
+@media print {
+   .noprint{
+      display: none;
+    }
+   .print{
+      display: block;
+      
+    }
+    .print ul { 
+      list-style: none 
+     }
+    .print li { 
+      margin: 10px; 
+     }
+ }

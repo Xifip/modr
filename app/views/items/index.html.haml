@@ -1,26 +1,40 @@
-%ul.breadcrumb
-  %li
-    %a{:href => products_path} Products
-  %li
-    %a{:href => product_spins_path(@product)}= @product.name
-  %li.active= @product.name + "_" + @spin.name
-%h1= @product.name + "_" + @spin.name
-.row
-  .pull-left
-    = link_to 'New item', new_product_spin_item_path(has_label: false)
-  .pull-right
-    = link_to 'Add item with a label', new_product_spin_item_path(has_label: true)
-%table.table
-  %tr
-    %th Name
-    %th Number of Mods
-    %th label
-    %th{:colspan => "2"}
-  - @items.each_with_index do |item, i|
+= stylesheet_link_tag "item_print", media: 'print'
+.row.noprint
+  %ul.breadcrumb
+    %li
+      %a{:href => products_path} Products
+    %li
+      %a{:href => product_spins_path(@product)}= @product.name
+    %li.active= @product.name + "_" + @spin.name
+  %h1= @product.name + "_" + @spin.name
+  .row
+    .pull-left
+      = link_to 'New item', new_product_spin_item_path(has_label: false)
+    .pull-right
+      = link_to 'Add item with a label', new_product_spin_item_path(has_label: true)        
+  %table.table
     %tr
-      %td= link_to item.name,  product_spin_item_mods_path(@product, @spin, item) 
-      %td= item.mods.count  
-      %td
+      %th Name
+      %th Number of Mods
+      %th label
+      %th{:colspan => "2"}
+    - @items.each_with_index do |item, i|
+      %tr
+        %td= link_to item.name,  product_spin_item_mods_path(@product, @spin, item) 
+        %td= item.mods.count  
+        %td
+          %div.label_stuff
+            %div.left_stuff
+              %div.imgholder= image_tag(item.image_url, :class => "label_barcode")
+              %div.label_text= item.name         
+            %div.right_stuff
+              %div.label_info= @product.name
+              %div.label_info= @spin.name          
+            %br{:style => "clear: left;"}/
+.row.print
+  %ul.print
+    - @items.each_with_index do |item, i|
+      %li.col-md-3
         %div.label_stuff
           %div.left_stuff
             %div.imgholder= image_tag(item.image_url, :class => "label_barcode")

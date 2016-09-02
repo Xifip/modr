@@ -15,6 +15,15 @@ $info: #3A87AD;
 $error: #B94A48;
 $bodyColour: #f8f5ee;
 
+@media screen {
+   .noprint{
+      display: block;
+    }
+   .print{
+      display: none;
+    }
+ }
+
 header.navbar.navbar-inverse.navbar-fixed-top.game div.navbar-inner{
   min-height: 0px;
 }
