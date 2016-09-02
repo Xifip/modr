@@ -34,7 +34,7 @@
 .row.print
   %ul.print
     - @items.each_with_index do |item, i|
-      %li.col-md-3
+      %li.col-md-3.pull-left
         %div.label_stuff
           %div.left_stuff
             %div.imgholder= image_tag(item.image_url, :class => "label_barcode")
