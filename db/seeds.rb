@@ -105,8 +105,6 @@ end
 def create_buildstandard(bom, spin)
   product = spin.product
   spin_buildstandards = spin.buildstandards.count
-  schematic_name = product.name + '_SCH_' + (spin_buildstandards + 1).to_s
-  bom.buildstandards.create( schematic: schematic_name,
-                             description: (spin_buildstandards + 1).to_s + "BS",
+  bom.buildstandards.create( description: (spin_buildstandards + 1).to_s + "BS",
                              spin_id: spin.id )
 end
