@@ -1,5 +1,5 @@
 class Distributor < ActiveRecord::Base
 
-  has_many :parts, through: :partdistributorrelationships  
+  has_many :distributor_parts
 
 end

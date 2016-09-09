@@ -13,6 +13,7 @@ class Item < ActiveRecord::Base
   has_many :mods, dependent: :destroy
 
   after_create :item_name
+  after_create :initial_mod
   mount_uploader :barcodeimage, BarcodeimageUploader
 
   validates_uniqueness_of :name
@@ -32,7 +33,7 @@ class Item < ActiveRecord::Base
     id_i = id_s.to_i
 
     zeros = 4 - id_i.to_s.length
-    zerochars = ""    
+    zerochars = ""
     zeros.times do
       zerochars = zerochars + "0"
     end
@@ -43,36 +44,42 @@ class Item < ActiveRecord::Base
   def item_name
     # add barcode to s3
     if self.name.blank?
-      week_of_year = Time.now.strftime("%U")    
+      week_of_year = Time.now.strftime("%U")
       current_year = Time.now.strftime("%y")
       if self.spin.product.product_number < 10
-        productnumber = "0" + self.spin.product.product_number.to_s 
+        productnumber = "0" + self.spin.product.product_number.to_s
       else
-        productnumber = self.spin.product.product_number.to_s 
+        productnumber = self.spin.product.product_number.to_s
       end
       serial_num = self.get_next_serial_num
       item_name = current_year.to_s + week_of_year.to_s + productnumber + serial_num.to_s
     else
       item_name = self.name
     end
-    s3 = AWS::S3.new    
-    
+    s3 = AWS::S3.new
+
     path =  'uploads/' + item_name + '/' + item_name + '.png'
 
 
     @code = item_name.to_s
-    @barcode = Barby::Code128B.new(@code)    
+    @barcode = Barby::Code128B.new(@code)
     blob = Barby::PngOutputter.new(@barcode).to_png #Raw PNG data
-    
-    s3.buckets['modr'].objects[path].write(blob, :acl => :public_read)   
 
-    #update item name    
+    s3.buckets['modr'].objects[path].write(blob, :acl => :public_read)
+
+    #update item name
     objUri = s3.buckets['modr'].objects[path].public_url.to_s
     self.update_attributes(name: item_name, image_url: objUri)
-    
+  end
+
+  def initial_mod
     #create initial mod
     mod_name = self.get_mod_name
-    self.mods.create(name: mod_name, description: "initial mod")
+    spin = self.spin
+    buildstandard = spin.buildstandards.first
+    self.mods.create( name: mod_name,
+                      description: "initial mod",
+                      buildstandard_id: buildstandard.id )
   end
 
 end

@@ -1,0 +1,21 @@
+%h1 Parts
+%p
+  Download:
+  \#{link_to "CSV", parts_path(format: "csv")} |
+  \#{link_to "Excel", parts_path(format: "xls")}
+%table#components
+  %tr
+    %th ResMed part no
+    %th Description
+    %th Part Value
+    %th Part data
+    %th Manufacturer
+    %th Manufacturer part no
+    %th Package
+  - @parts.each do |part|
+    %tr
+      %td= part.description
+%h2 Import parts
+= form_tag import_parts_path, multipart: true do
+  = file_field_tag :file
+  = submit_tag "Import"

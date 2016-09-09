@@ -4,17 +4,17 @@ Modr::Application.routes.draw do
 	root :to => "products#index"
 
 	resources :products, :only => [:new, :create, :index, :edit, :update, :destroy] do
-	  resources :spins, :only => [:new, :create, :index, :edit, :update, :destroy] do 
+	  resources :spins, :only => [:new, :create, :index, :edit, :update, :destroy] do
       resources :items, :only => [:new, :create, :index, :destroy] do
         resources :mods, :only => [:new, :create, :edit, :update, :index, :show, :edit]
       end
     end
   end
-	
-  resources :components do
+
+  resources :parts do
     collection { post :import }
   end
-  resources :components, :only => [:new, :create, :index, :edit, :update, :destroy]
+  resources :parts, :only => [:new, :create, :index, :edit, :update, :destroy]
 
   #resources :items
   #resources :spins
