@@ -41,6 +41,7 @@ gem 'autoprefixer-rails'
 gem 'rails_12factor', group: :production
 gem "letter_opener", group: :development
 gem 'devise'
+gem 'sendgrid-ruby'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
